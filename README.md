@@ -26,7 +26,9 @@ To run this project locally, follow these steps:
 
    LINKEDIN_EMAIL=your_linkedin_email@example.com
    LINKEDIN_PASSWORD=your_linkedin_password
-   \```
+
+   - BROWSER=your_browser(edge, chrome, firefox, default=edge)
+     \```
 
 4. **Run the application**
    \```bash
@@ -35,7 +37,7 @@ To run this project locally, follow these steps:
 
 ## Usage
 
-Once the application is running, you can access the API to retrieve LinkedIn activity data.
+Once the application is running, you can access the API to retrieve LinkedIn activity data. The API documentation is available at: http://127.0.0.1:5000/docs#/
 
 Endpoint: /scrape/<linkedin_user_id>
 HTTP Method: GET

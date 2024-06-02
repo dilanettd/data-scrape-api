@@ -4,7 +4,7 @@ Welcome to the documentation for the Social scraping API!
 This project is written in Python, with the
 [Flask](https://flask.palletsprojects.com/) web framework. This documentation
 is generated automatically from the
-the APIFairy Flask extension.
+the APIFairy Flask extension. linkedin
 
 ## Introduction
 
@@ -20,7 +20,7 @@ environment variables that are currently used:
 
 - LINKEDIN_EMAIL=your_linkedin_email@example.com
 - LINKEDIN_PASSWORD=your_linkedin_password
-- DRIVER=your_selenium_driver
+- BROWSER=your_browser(edge, chrome, firefox, default=edge)
 
 
 ## Errors

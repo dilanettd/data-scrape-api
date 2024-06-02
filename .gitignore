@@ -134,3 +134,6 @@ dmypy.json
 
 .ruff_cache
 .ruff_cache/
+
+#ignore cookies file
+**/linkedin_cookies.pkl

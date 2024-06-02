@@ -11,14 +11,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
-from config import Config as settings
-
 # Path to store cookies
 COOKIES_PATH = "linkedin_cookies.pkl"
 
 
-def initialize_driver(browser="edge"):
+def initialize_driver(browser):
     """Initializes the webdriver with headless options."""
+
     if browser == "edge":
         options = webdriver.EdgeOptions()
         options.add_argument("--headless")
@@ -42,6 +41,7 @@ def initialize_driver(browser="edge"):
 
 def save_cookies(driver, path):
     """Saves cookies to a file."""
+
     with open(path, "wb") as filehandler:
         pickle.dump(driver.get_cookies(), filehandler)
 
@@ -56,14 +56,15 @@ def load_cookies(driver, path):
 
 def linkedin_login(driver, email, password):
     """Logs into LinkedIn and saves cookies."""
+
     driver.get("https://www.linkedin.com/login")
     email_input = driver.find_element(By.ID, "username")
     password_input = driver.find_element(By.ID, "password")
     email_input.send_keys(email)
     password_input.send_keys(password)
     password_input.send_keys(Keys.RETURN)
-
-    time.sleep(5)
+    #
+    time.sleep(20)
 
     save_cookies(driver, COOKIES_PATH)
     return driver
@@ -71,6 +72,7 @@ def linkedin_login(driver, email, password):
 
 def linkedin_login_with_cookies(driver):
     """Logs into LinkedIn using saved cookies."""
+
     driver.get("https://www.linkedin.com")
     load_cookies(driver, COOKIES_PATH)
     driver.refresh()
@@ -80,6 +82,7 @@ def linkedin_login_with_cookies(driver):
 
 def scroll_to_bottom(driver, target_posts):
     """Scrolls to the bottom of the page to load all posts."""
+
     last_height = driver.execute_script("return document.body.scrollHeight")
     posts_loaded = 0
     while True:
@@ -95,6 +98,7 @@ def scroll_to_bottom(driver, target_posts):
 
 def extract_likers_data(driver, post_id):
     """Extracts the likers data for a given post."""
+
     try:
         likers_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
@@ -137,23 +141,8 @@ def extract_likers_data(driver, post_id):
         return []
 
 
-def get_linkedin_activity_data(linkedin_user_id, posts_limit=30):
+def get_linkedin_activity_data(driver, linkedin_user_id, posts_limit=30):
     """Retrieves the recent activity data for the given LinkedIn user."""
-    email = settings.LINKEDIN_EMAIL
-    password = settings.LINKEDIN_PASSWORD
-
-    if not email or not password:
-        abort(
-            400, "LinkedIn email or password is not set in the environment variables."
-        )
-
-    driver = initialize_driver()
-
-    # Check if cookies exist and login using cookies if possible
-    if os.path.exists(COOKIES_PATH):
-        driver = linkedin_login_with_cookies(driver)
-    else:
-        driver = linkedin_login(driver, email, password)
 
     try:
         driver.get(

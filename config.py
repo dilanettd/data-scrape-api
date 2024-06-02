@@ -18,11 +18,11 @@ class Config:
     CORS_SUPPORTS_CREDENTIALS = True
 
     # API documentation
-    APIFAIRY_TITLE = "Social Data Scraping API"
-    APIFAIRY_VERSION = "1.0"
-    APIFAIRY_UI = os.getenv("DOCS_UI", "elements")
-    APIFAIRY_TAGS = ["linkedin"]
+    APIFAIRY_TITLE: str = "Social Data Scraping API"
+    APIFAIRY_VERSION: str = "1.0"
+    APIFAIRY_UI: str = "elements"
 
     # LinkedIn credentials
     LINKEDIN_EMAIL = os.getenv("LINKEDIN_EMAIL", "")
     LINKEDIN_PASSWORD = os.getenv("LINKEDIN_PASSWORD", "")
+    BROWSER = os.getenv("BROWSER", "edge")

@@ -7,31 +7,32 @@ This project is a Flask API that retrieves recent activity (latest 20-30 posts) 
 To run this project locally, follow these steps:
 
 1. **Clone the repository**
-   \```bash
+   \```
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
    \```
 
 2. **Install dependencies**
    Make sure you have Python and pip installed.
-   \```bash
+   \```
    pip install -r requirements.txt
    \```
 
 3. **Set up environment variables**
    Create a .env file at the root of the project with the following details:
-   \```plaintext
+   \```
+   Copy the content from the .env.example file into the newly created .env file. Make sure to follow any specific instructions provided with the .env.example file to properly configure your environment.
+   \```
 
    # LinkedIn credentials
 
-   LINKEDIN_EMAIL=your_linkedin_email@example.com
-   LINKEDIN_PASSWORD=your_linkedin_password
-
+   - LINKEDIN_EMAIL=your_linkedin_email@example.com
+   - LINKEDIN_PASSWORD=your_linkedin_password
    - BROWSER=your_browser(edge, chrome, firefox, default=edge)
      \```
 
 4. **Run the application**
-   \```bash
+   \```
    flask run
    \```
 

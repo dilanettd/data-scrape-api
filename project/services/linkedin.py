@@ -157,7 +157,12 @@ def get_linkedin_activity_data(driver, linkedin_user_id, posts_limit=30):
         for post in posts[:posts_limit]:
             post_id = post["data-urn"]
             likers_data = extract_likers_data(driver, post_id)
-            activity_data.append({"post_id": post_id, "likers": likers_data})
+            activity_data.append(
+                {
+                    "post_id": re.search(r"urn:li:activity:(\d+)", post_id).group(1),
+                    "likers": likers_data,
+                }
+            )
     except Exception as e:
         print(f"An error occurred: {e}")
     finally:
